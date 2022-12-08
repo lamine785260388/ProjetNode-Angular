@@ -1,6 +1,4 @@
 export class Balance {
-    constructor(
-        private montant : GLfloat
-    )
-    {}
+  
+      montant : GLfloat
 }

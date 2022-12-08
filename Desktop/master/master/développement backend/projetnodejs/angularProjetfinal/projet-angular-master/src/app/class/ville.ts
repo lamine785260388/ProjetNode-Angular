@@ -1,8 +1,6 @@
 export class Ville{
-    constructor(
-        public code_iso2_ville : string,
-        public nom_ville : string 
 
-    )
-    {}
+        code_iso2_ville: string;
+         nom_ville : string ;
+
 }

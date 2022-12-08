@@ -1,14 +1,13 @@
 export class Transaction {
-    constructor(
-        _montant_a_recevoir : GLfloat,
-        public date_envoie : Date,
-        public frais : GLfloat, 
-        public statut_transaction : string,
-        public pays_origne : string,
-        public pays_destination : string, 
-        public devise_origine : string,
-        public devise_destinataire : string
+ 
+          montant_a_recevoir : GLfloat ;
+          date_envoie : Date ;
+          frais : GLfloat ; 
+          statut_transaction : string ;
+          pays_origne : string ;
+          pays_destination : string ; 
+          devise_origine : string ;
+          devise_destinataire : string
 
-        
-    ){}
+ 
 }

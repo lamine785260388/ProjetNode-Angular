@@ -1,8 +1,8 @@
 export class Agence {
-    constructor(
-    public code_agence : string,
-    public nom_agence : string,
-    public statut_agence : boolean)
-    {}
+ 
+      code_agence : string;
+      nom_agence : string;
+      statut_agence : boolean;
+    
 
 }

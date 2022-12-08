@@ -5,12 +5,16 @@ import { ContactComponent } from './contact/contact/contact.component';
 import { LoginComponent } from './login/login.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { SendComponent } from './send-receve/send/send.component';
+import { DeconnexionComponent } from './deconnexion/deconnexion.component';
+import { ReceveComponent } from './send-receve/receve/receve.component';
 
 const routes: Routes = [
   {path: '', component:AccueilComponent},
   {path:'contact', component:ContactComponent},
   {path:'login', component:LoginComponent},
   {path:'send', component:SendComponent},
+  {path:'deconnexion',component:DeconnexionComponent},
+  {path:'recevoir',component:ReceveComponent},
 
   {path:'**', component:PageNotFoundComponent}
 ];
