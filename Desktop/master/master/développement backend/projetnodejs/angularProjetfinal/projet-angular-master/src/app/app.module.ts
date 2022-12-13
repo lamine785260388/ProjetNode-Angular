@@ -15,6 +15,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { LoginComponent } from './login/login.component';
 import { HttpClientModule } from "@angular/common/http";
 import { DeconnexionComponent } from './deconnexion/deconnexion.component';
+import { ResumetransactionComponent } from './send-receve/resumetransaction/resumetransaction.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { DeconnexionComponent } from './deconnexion/deconnexion.component';
     HeaderComponent,
     FooterComponent,
     PageNotFoundComponent,
-    DeconnexionComponent
+    DeconnexionComponent,
+    ResumetransactionComponent
     
   ],
   imports: [
