@@ -14,7 +14,9 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
    
   constructor(private http: HttpClient,private router:Router) {}
-  alldonne:Donne;
+  alldonne:Donne|any;
+  islogin:any;
+  token:any;
   ngOnInit(): void {
   
   }
@@ -31,27 +33,40 @@ export class LoginComponent implements OnInit {
    var user = form.value.username;
    var password=form.value.password;
     this.http
-      .post<Donne>(
+      .post<Donne|any>(
         "http://localhost:3000/api/login",
         { username: user, password: password },
         this.httpOptions
       )
 
-      .subscribe((data) =>{
-        this.alldonne=data
-        if(this.alldonne.islogin=='true'){
-          console.log(this.alldonne)
-          sessionStorage.setItem('tokken',this.alldonne.token)
-          sessionStorage.setItem('isloggin',this.alldonne.islogin)
+      .subscribe((res) =>{
+        console.log(res)
+        this.alldonne=res.data
+        this.islogin=res.islogin
+        this.token=res.token
+        
+
+        if(this.islogin=='true'){
+          console.log(this.alldonne.isAdmin)
+          console.log(this.alldonne.isAdmin)
+          sessionStorage.setItem('tokken',this.token)
+          sessionStorage.setItem('isloggin',this.islogin)
+          sessionStorage.setItem('isAdmin',this.alldonne.isAdmin)
+          sessionStorage.setItem('iduser',this.alldonne.id)
+          
           if(sessionStorage.getItem('url')){
+            let url=sessionStorage.getItem('url')
+            sessionStorage.removeItem('url')
+           this.router.navigate(['/'+url])
+          }
+          else{
             this.router.navigate(['/'])
           }
-         this.router.navigate(['/'+sessionStorage.getItem('url')])
+         
+         
           
         }
-        else{
-
-        }
+       
         });
 
     // ou

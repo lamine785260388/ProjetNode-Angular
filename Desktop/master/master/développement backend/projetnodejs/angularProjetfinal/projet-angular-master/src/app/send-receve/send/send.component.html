@@ -59,10 +59,10 @@
                     
                    
                     <div class="form-row form-row-1">
-                        <input type="text" name="phone" class="phone" id="phone" placeholder="j_envoie" ngModel required>
+                        <input type="text" name="montantenvoie" class="phone" id="phone" placeholder="j_envoie" #input (keyup)="0" type="text" (click)="calculFrais($event)" ngModel required>
                     </div>
                     <div class="form-row-1">
-                        <select class="" >
+                        <select class=""  name="idpaysemetteur" ngModel required>
                             <option *ngFor="let pays of allPays" value="{{pays.id}}">{{pays.nom_pays}}</option>
                            
                           </select>  
@@ -71,10 +71,10 @@
                 <div class="form-group">
                    
                     <div class="form-row form-row-1">
-                        <input type="text" name="phone" class="phone" id="phone" placeholder="je reçoit" ngModel required>
+                        <input type="text" name="phone" class="phone disabled" id="phone" placeholder="Montant reçu"   value="{{(+input.value)-((+input.value)*0.01)}}" ngModel required>
                     </div>
-                    <div class="form-row-1">
-                        <select class="">
+                    <div class="">
+                        <select class="" name="idpaysrecepteur" ngModel required>
                             <option *ngFor="let pays of allPays" value="{{pays.id}}">{{pays.nom_pays}}</option>
                             
                           </select>  

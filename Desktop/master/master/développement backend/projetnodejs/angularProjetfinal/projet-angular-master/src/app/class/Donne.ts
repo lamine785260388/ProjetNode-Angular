@@ -7,5 +7,6 @@ export class Donne {
     updatedAt: string;
     date_naiss_client : Date;
     message:string;
-    token:string
+    token:string;
+    isAdmin:string
 }
