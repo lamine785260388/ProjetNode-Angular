@@ -1,43 +1,46 @@
 <app-header></app-header>
 
+
 <div class="page-content">
     <div class="form-v10-content">
-        <form class="form-detail" action="#" method="post" id="myform">
+      
+        <form class="form-detail" #form="ngForm" (submit)="submit(form)">
+          
+           
             <div class="form-left">
                 <h2>Infomation de l'emetteur</h2>
-                
                 <div class="form-group">
                     <div class="form-row form-row-1">
-                        <input type="text" name="first_name" id="first_name" class="input-text" placeholder="First Name" required>
+                        <input type="text" name="prenomemetteur" id="first_name" class="input-text" placeholder="Votre prenom" ngModel required>
                     </div>
                     <div class="form-row form-row-2">
-                        <input type="text" name="last_name" id="last_name" class="input-text" placeholder="Last Name" required>
+                        <input type="text" name="nomemetteur" id="last_name" class="input-text" placeholder="Votre nom" ngModel required>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="form-row form-row-1">
-                        <input type="number" name="first_name" id="first_name" class="input-text" placeholder="N° Cni" required>
+                        <input type="number" name="cniemetteur" id="first_name" class="input-text" placeholder="N° Cni" ngModel required>
                     </div>
                     <div class="form-row form-row-2">
-                        <input type="text" name="last_name" id="last_name" class="input-text" placeholder="Telephone" required>
+                        <input type="text" name="phoneemetteur" id="last_name" class="input-text" placeholder="Votre n° telephone" ngModel required>
                     </div>
                 </div>
                 <h2>Infomation du récepteur </h2>
 
                 <div class="form-group">
                     <div class="form-row form-row-1">
-                        <input type="text" name="first_name" id="first_name" class="input-text" placeholder="First name" required>
+                        <input type="text" name="prenomrecepteur" id="first_name" class="input-text" placeholder="Votre prenom" ngModel required>
                     </div>
                     <div class="form-row form-row-2">
-                        <input type="text" name="last_name" id="last_name" class="input-text" placeholder="Last Name" required>
+                        <input type="text" name="nomrecepteur" id="last_name" class="input-text" placeholder="Votre nom" ngModel required>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="form-row form-row-1">
-                        <input type="number" name="first_name" id="first_name" class="input-text" placeholder="N° Cni" required>
+                        <input type="number" name="cnirecepteur" id="first_name" class="input-text" placeholder="N° Cni" ngModel required>
                     </div>
                     <div class="form-row form-row-2">
-                        <input type="text" name="last_name" id="last_name" class="input-text" placeholder="Telephone" required>
+                        <input type="text" name="phonerecepteur" id="last_name" class="input-text" placeholder="Telephone" ngModel required>
                     </div>
                 </div>
                 
@@ -56,32 +59,27 @@
                     
                    
                     <div class="form-row form-row-1">
-                        <input type="text" name="phone" class="phone" id="phone" placeholder="j_envoie" required>
+                        <input type="text" name="phone" class="phone" id="phone" placeholder="j_envoie" ngModel required>
                     </div>
                     <div class="form-row-1">
-                        <select class="">
-                            <option selected>frcs</option>
-                            <option value="1">USA</option>
-                            <option value="2">EUR</option>
-                            <option value="3">YEN</option>
-                            <option value="4">Frcs</option>
+                        <select class="" >
+                            <option *ngFor="let pays of allPays" value="{{pays.id}}">{{pays.nom_pays}}</option>
+                           
                           </select>  
                     </div>
                 </div>
                 <div class="form-group">
                    
                     <div class="form-row form-row-1">
-                        <input type="text" name="phone" class="phone" id="phone" placeholder="je reçoit" required>
+                        <input type="text" name="phone" class="phone" id="phone" placeholder="je reçoit" ngModel required>
                     </div>
                     <div class="form-row-1">
                         <select class="">
-                            <option selected>frcs</option>
-                            <option value="1">USA</option>
-                            <option value="2">EUR</option>
-                            <option value="3">YEN</option>
-                            <option value="4">Frcs</option>
+                            <option *ngFor="let pays of allPays" value="{{pays.id}}">{{pays.nom_pays}}</option>
+                            
                           </select>  
                     </div>
+                    
                 </div>
               
                 <div class="form-checkbox">
@@ -90,6 +88,7 @@
                           <span class="checkmark"></span>
                     </label>
                 </div>
+               
                 <div class="form-row-last">
                     <input type="submit" name="register" class="register" value="valider">
                 </div>

@@ -18,6 +18,8 @@ constructor(private router:Router,private http: HttpClient){
   this.router.navigate(['login'])
  }
  }
+ allPays:Pays[]|any
+ 
  httpOptions = {
   headers: new HttpHeaders({
     "Content-Type": "application/json"
@@ -27,19 +29,46 @@ constructor(private router:Router,private http: HttpClient){
 
     console.log(sessionStorage.getItem('isloggin'))
     this.http
-    .get(
+    .get<Pays[]|any>(
       "http://localhost:3000/api/findAllPays",
       )
-      .subscribe(res=>console.log(res))
+      .subscribe(res=>{
+this.allPays=res.data
+console.log(this.allPays[0])
+      })
    
    
   }
   
   submit (form: NgForm) {
+     //recuperation des informations de l'emmeteur
+    var prenom = form.value.prenomemetteur;
+    var nom=form.value.nomemetteur;
+    var cni=form.value.cniemetteur
+    var phone=form.value.phoneemetteur
 
-    var user = form.value.username;
-    var password=form.value.password;
-    console.log('suis la');
+    this.http
+      .post(
+        "http://localhost:3000/api/InsertClient",
+        { id: cni, nom_client: nom,prenom_client:prenom,phone:phone },
+        this.httpOptions
+      )
+      .subscribe(res=>{
+        console.log(res+"insertion passé avec succés")
+      })
+      var prenom = form.value.prenomrecepteur;
+    var nom=form.value.nomrecepteur;
+    var cni=form.value.cnirecepteur;
+    var phone=form.value.phonerecepteur;
+    this.http
+      .post(
+        "http://localhost:3000/api/InsertClient",
+        { id: cni, nom_client: nom,prenom_client:prenom,phone:phone },
+        this.httpOptions
+      )
+      .subscribe(res=>{
+        console.log(res+"insertion recepteur")
+      })
      
    }
 }
