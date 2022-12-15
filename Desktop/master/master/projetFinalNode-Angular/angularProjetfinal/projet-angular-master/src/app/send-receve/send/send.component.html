@@ -1,0 +1,100 @@
+<app-header></app-header>
+
+
+<div class="page-content">
+    <div class="form-v10-content">
+      
+        <form class="form-detail" #form="ngForm" (submit)="submit(form)">
+          
+           
+            <div class="form-left">
+                <h2>Infomation de l'emetteur</h2>
+                <div class="form-group">
+                    <div class="form-row form-row-1">
+                        <input type="text" name="prenomemetteur" id="first_name" class="input-text" placeholder="Votre prenom" ngModel required>
+                    </div>
+                    <div class="form-row form-row-2">
+                        <input type="text" name="nomemetteur" id="last_name" class="input-text" placeholder="Votre nom" ngModel required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-row form-row-1">
+                        <input type="number" name="cniemetteur" id="first_name" class="input-text" placeholder="N° Cni" ngModel required>
+                    </div>
+                    <div class="form-row form-row-2">
+                        <input type="text" name="phoneemetteur" id="last_name" class="input-text" placeholder="Votre n° telephone" ngModel required>
+                    </div>
+                </div>
+                <h2>Infomation du récepteur </h2>
+
+                <div class="form-group">
+                    <div class="form-row form-row-1">
+                        <input type="text" name="prenomrecepteur" id="first_name" class="input-text" placeholder="Votre prenom" ngModel required>
+                    </div>
+                    <div class="form-row form-row-2">
+                        <input type="text" name="nomrecepteur" id="last_name" class="input-text" placeholder="Votre nom" ngModel required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-row form-row-1">
+                        <input type="number" name="cnirecepteur" id="first_name" class="input-text" placeholder="N° Cni" ngModel required>
+                    </div>
+                    <div class="form-row form-row-2">
+                        <input type="text" name="phonerecepteur" id="last_name" class="input-text" placeholder="Telephone" ngModel required>
+                    </div>
+                </div>
+                
+                
+                
+            </div>
+            
+            
+            <div class="form-right">
+                <h2>Transactions Details</h2>
+                
+                
+            
+               
+                <div class="form-group">
+                    
+                   
+                    <div class="form-row form-row-1">
+                        <input type="text" name="montantenvoie" class="phone" id="phone" placeholder="j_envoie" #input (keyup)="0" type="text" (click)="calculFrais($event)" ngModel required>
+                    </div>
+                    <div class="form-row-1">
+                        <select class=""  name="idpaysemetteur" ngModel required>
+                            <option *ngFor="let pays of allPays" value="{{pays.id}}">{{pays.nom_pays}}</option>
+                           
+                          </select>  
+                    </div>
+                </div>
+                <div class="form-group">
+                   
+                    <div class="form-row form-row-1">
+                        <input type="text" name="phone" class="phone disabled" id="phone" placeholder="Montant reçu"   value="{{(+input.value)-((+input.value)*0.01)}}" [disabled]="true" ngModel required>
+                    </div>
+                    <div class="">
+                        <select class="" name="idpaysrecepteur" ngModel required>
+                            <option *ngFor="let pays of allPays" value="{{pays.id}}">{{pays.nom_pays}}</option>
+                            
+                          </select>  
+                    </div>
+                    
+                </div>
+              
+                <div class="form-checkbox">
+                    <label class="container"><p>I do accept the <a href="#" class="text">Terms and Conditions</a> of your site.</p>
+                          <input type="checkbox" name="checkbox">
+                          <span class="checkmark"></span>
+                    </label>
+                </div>
+               
+                <div class="form-row-last">
+                    <input type="submit" name="register" class="register" value="valider">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<app-footer></app-footer>
