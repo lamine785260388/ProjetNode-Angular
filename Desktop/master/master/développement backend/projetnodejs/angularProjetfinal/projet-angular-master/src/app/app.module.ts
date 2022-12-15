@@ -17,6 +17,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { DeconnexionComponent } from './deconnexion/deconnexion.component';
 import { ResumetransactionComponent } from './send-receve/resumetransaction/resumetransaction.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,

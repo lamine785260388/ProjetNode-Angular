@@ -7,6 +7,9 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Pays } from 'src/app/class/pays';
 import Swal from 'sweetalert2';
 import { findonePays_Devices } from 'src/app/class/PaysDeviseFindOne';
+import { Devise } from 'src/app/class/devise';
+import { AllServicesService } from 'src/app/all-services.service';
+import { Idclass } from 'src/app/class/id';
 
 @Component({
   selector: 'app-send',
@@ -14,19 +17,22 @@ import { findonePays_Devices } from 'src/app/class/PaysDeviseFindOne';
   styleUrls: ['./send.component.css']
 })
 export class SendComponent implements OnInit {
-  idEmetteur: any;
-  idRecepteur: any;
-constructor(private router:Router,private http: HttpClient){
+
+constructor(private router:Router,private http: HttpClient,private mesServices:AllServicesService){
  if(sessionStorage.getItem('isloggin')!='true'){
   sessionStorage.setItem('url','send')
   this.router.navigate(['login'])
  }
  }
+ idEmetteur: Idclass|any;
+ idRecepteur: Idclass|any;
  verif:string="false"
  allPays:Pays[]|any
  infoem:findonePays_Devices|any
  inforec:findonePays_Devices|any
- 
+ infoemdev:Devise|any
+ inforecdev:Devise|any
+
  httpOptions = {
   headers: new HttpHeaders({
     "Content-Type": "application/json"
@@ -55,13 +61,15 @@ console.log(this.allPays[0])
     var phoneEm=form.value.phoneemetteur
 //find or create emetteur(client)
     this.http
-      .post<any>(
+      .post<Idclass|any>(
         "http://localhost:3000/api/InsertClient",
         { id: cniEm, nom_client: nomEm,prenom_client:prenomEm,phone:phoneEm },
         this.httpOptions
       )
       .subscribe(res=>{
-        this.idEmetteur=res.id
+        this.idEmetteur=res.data
+        
+        
       })
       //recupération information recepteur
       
@@ -71,8 +79,8 @@ console.log(this.allPays[0])
     var phone=form.value.phonerecepteur;
     var montantenvoye=+form.value.montantenvoie;
     var montantreçu=montantenvoye-montantenvoye*0.01
-    var idPaysemetteur=form.value.idpaysemetteur
-    var idPaysRecepteur=form.value.idpaysrecepteur
+    var idPaysemetteur=+form.value.idpaysemetteur
+    var idPaysRecepteur=+form.value.idpaysrecepteur
     console.log('Emetteur'+idPaysemetteur)
     console.log('Recepteur'+idPaysRecepteur)
     //find or create recepteur(client)
@@ -83,7 +91,7 @@ console.log(this.allPays[0])
         this.httpOptions
       )
       .subscribe(res=>{
-       this.idRecepteur=res.id
+       this.idRecepteur=res.data
       })
 
       //information Pays et device emetteur et recepteur
@@ -95,7 +103,9 @@ console.log(this.allPays[0])
       .subscribe(res=>{
         
            this.infoem=res.data
-          console.log(this.infoem)
+           this.infoemdev=res.resultat1
+           console.log(this.infoemdev)
+         
       })
       this.http
       .post<any>(
@@ -104,8 +114,11 @@ console.log(this.allPays[0])
         )
         .subscribe(res=>{
           
-            var inforec=res.data
-            console.log(inforec
+             this.inforec=res.data
+             this.inforecdev=res.resultat1
+            
+             console.log(this.inforecdev)
+            console.log(this.inforec
               )
         })
       const swalWithBootstrapButtons = Swal.mixin({
@@ -130,7 +143,25 @@ console.log(this.allPays[0])
           this.router.navigate(['/'])
         }
         if (result.isConfirmed) {
-          this.router.navigate(['/'])
+          let frais=montantenvoye*0.01
+          console.log('hello suis la'+this.idEmetteur);
+          
+          this.http
+          .post<any>(
+            "http://localhost:3000/api/InsertTransaction",{montant_a_recevoir:montantreçu,montantTotal:montantenvoye,status:'envoye',paysDest:this.inforec.nom_pays,paysOrigine:this.infoem.nom_pays,DeviceDest:this.inforecdev.nom_devise,DeviceOrigine:this.infoemdev.nom_devise,frais:frais,DEVISEId:this.infoem.DEVISEId,CLIENTId:+this.idEmetteur,UserId:sessionStorage.getItem('iduser'),recepteurid:+this.idRecepteur},
+            this.httpOptions
+            )
+            .subscribe(res=>{
+              if(res.erreur=='false'){
+                Swal.fire(
+                  'Transaction!',
+                  'faite avec succes <a href=/>accueil</a> ou <a href=send>nouvelleTransaction</a>!',
+                  'success',
+                  
+                )
+              }
+            })
+        
         } else if (
           /* Read more about handling dismissals below */
           result.dismiss === Swal.DismissReason.cancel

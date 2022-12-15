@@ -4,9 +4,7 @@ export class findonePays_Devices{
     code_iso2_pays : string ;
     nom_pays:string;
     DEVISEId:number;
-    symbole:string;
-    Devise:{
-        
-    }
+    nom_devise:string;
+ 
 
 }

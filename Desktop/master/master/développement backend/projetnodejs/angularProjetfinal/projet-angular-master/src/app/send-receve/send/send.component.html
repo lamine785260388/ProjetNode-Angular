@@ -71,7 +71,7 @@
                 <div class="form-group">
                    
                     <div class="form-row form-row-1">
-                        <input type="text" name="phone" class="phone disabled" id="phone" placeholder="Montant reçu"   value="{{(+input.value)-((+input.value)*0.01)}}" ngModel required>
+                        <input type="text" name="phone" class="phone disabled" id="phone" placeholder="Montant reçu"   value="{{(+input.value)-((+input.value)*0.01)}}" [disabled]="true" ngModel required>
                     </div>
                     <div class="">
                         <select class="" name="idpaysrecepteur" ngModel required>
