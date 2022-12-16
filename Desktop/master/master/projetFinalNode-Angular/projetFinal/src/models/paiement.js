@@ -5,10 +5,7 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true,
         autoIncrement: true
       },
-      date_paiement: {
-        type: DataTypes.DATEONLY ,
-        
-      },
+   
       numero_piece: {
         type: DataTypes.STRING
       },

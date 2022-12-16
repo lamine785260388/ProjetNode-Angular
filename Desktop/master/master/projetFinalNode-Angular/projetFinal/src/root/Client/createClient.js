@@ -5,7 +5,7 @@ module.exports = (app) => {
   app.post('/api/InsertClient', async (req, res) => {
     
 
-  
+  try{
     const [user, created] =  await Client.findOrCreate({
       where: { id: req.body.id },
       defaults: {
@@ -22,7 +22,10 @@ module.exports = (app) => {
       return res.json({data:user.id})
     }
     
-   
+  }
+  catch(e){
+    console.log(e)
+  }
    
   })
 }

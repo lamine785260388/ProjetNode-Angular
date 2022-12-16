@@ -118,8 +118,7 @@ console.log(this.allPays[0])
              this.inforecdev=res.resultat1
             
              console.log(this.inforecdev)
-            console.log(this.inforec
-              )
+            
         })
       const swalWithBootstrapButtons = Swal.mixin({
         customClass: {

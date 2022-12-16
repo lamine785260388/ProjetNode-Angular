@@ -12,8 +12,9 @@ module.exports = (app) => {
 
         
        
-        Devise.findOne({id:resultat.DEVISEId})
+        Devise.findOne({where:{id:resultat.DEVISEId}})
         .then(resultat1=>{
+          console.log(resultat1.id)
           res.json({ message, data:resultat,resultat1})
         })
       })

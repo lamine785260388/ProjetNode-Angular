@@ -1,0 +1,52 @@
+<app-header></app-header>
+
+<div class="page-content">
+  <div class="form-v10-content">
+    <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            
+            <th scope="col">Code Paiement</th>
+            <th scope="col">CNIClient</th>
+            <th scope="col">Montant total</th>
+            <th scope="col">Montant reçu</th>
+            <th scope="col">Status</th>
+            <th scope="col">Devise envoyé</th>
+             <th scope="col">Devise Destination</th>
+            <th scope="col">Date Envoyé</th>
+
+            
+
+            
+            
+          </tr>
+        </thead>
+        <tbody>
+         
+          <tr *ngFor="let donneTrans of donneTransaction">
+            
+            <td>{{donneTrans.id}}</td>
+            <td>{{donneTrans.CLIENTId}}</td>
+            <td>{{donneTrans.montantTotal}}</td>
+            <td>{{donneTrans.montant_a_recevoir}}</td>
+            <td>{{donneTrans.status}}</td>
+            <td>{{donneTrans.DeviceOrigine}}</td>
+            <td>{{donneTrans.DeviceDest}}</td>
+            <td>{{donneTrans.createdAt}}</td>
+
+
+
+
+
+          </tr>
+         
+        </tbody>
+      </table>
+      
+   
+    </div >
+</div>
+
+
+
+<app-footer></app-footer>

@@ -8,6 +8,7 @@ module.exports = (app) => {
   
       Transaction.findAll({order:['createdAt' ]})
       .then(trans => {
+       
         const message = 'La liste des Transaction a bien été récupérée.'
         res.json({ message, data: trans })
       })

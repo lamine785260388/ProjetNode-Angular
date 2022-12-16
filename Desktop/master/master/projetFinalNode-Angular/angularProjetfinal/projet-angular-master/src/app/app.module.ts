@@ -16,6 +16,7 @@ import { LoginComponent } from './login/login.component';
 import { HttpClientModule } from "@angular/common/http";
 import { DeconnexionComponent } from './deconnexion/deconnexion.component';
 import { ResumetransactionComponent } from './send-receve/resumetransaction/resumetransaction.component';
+import { ListTransactionComponent } from './Transaction/list-transaction/list-transaction.component';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { ResumetransactionComponent } from './send-receve/resumetransaction/resu
     FooterComponent,
     PageNotFoundComponent,
     DeconnexionComponent,
-    ResumetransactionComponent
+    ResumetransactionComponent,
+    ListTransactionComponent
     
   ],
   imports: [
