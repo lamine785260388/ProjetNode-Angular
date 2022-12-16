@@ -1,4 +1,4 @@
-const { Transaction } = require('../../db/sequelize')
+const { Transaction,SousAgence,Agence, Balance } = require('../../db/sequelize')
 
   
 module.exports = (app) => {
@@ -23,12 +23,32 @@ module.exports = (app) => {
 
     })
     .then(result=>{
-      message='insertion passé avec succés'
-      erreur='false'
-      return res.json({message,erreur,data:result.id,erreur})
+      SousAgence.findOne({where:{id:+req.body.idsousagence}})
+      .then(resultat1=>{
+           console.log("suis la l_id agence "+ resultat1.AGENCEId)
+           Balance.findOne({where:{AGENCEId:resultat1.AGENCEId}})
+           .then(resultatfinal=>{
+            console.log("suis la montant"+resultatfinal.montant);
+            if(req.body.montantTotal <resultatfinal.montant){
+              montantupdate=resultatfinal.montant-req.body.montantTotal
+              resultatfinal.update({montant:montantupdate})
+              console.log("suis la dans transaction"+req.body.idsousagence)
+              message='insertion passé avec succés'
+              erreur='false'
+              res.json({message,erreur,data:result.id,erreur})
+            }
+            else{
+              console.log('suis la dans le else');
+              message='Votre montant est insuffisante pour faire cette Transaction votre solde est '+resultatfinal.montant
+              res.json({message})
+            }
+           })
+      })
+     
     })
     .catch(error=>{
-      return res.json(error)
+      message='veuillez vérifier vos informations de transaction'
+      res.json({message})
     })
     
     

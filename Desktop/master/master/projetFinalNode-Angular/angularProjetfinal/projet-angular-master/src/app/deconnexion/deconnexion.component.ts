@@ -1,5 +1,6 @@
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-deconnexion',
@@ -15,6 +16,11 @@ export class DeconnexionComponent implements OnInit {
     console.log('bonjour')
   }
   ngOnInit(): void {
+    Swal.fire(
+      'Deconnexion succes ',
+      'Bonne fin de journéé on espére vous revoir bientot',
+      'success'
+    )
 sessionStorage.clear()
 this.router.navigate([''])
 

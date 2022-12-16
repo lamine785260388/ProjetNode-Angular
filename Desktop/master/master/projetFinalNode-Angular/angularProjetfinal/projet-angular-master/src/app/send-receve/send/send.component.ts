@@ -153,7 +153,7 @@ console.log(this.allPays[0])
           
           this.http
           .post<string|any>(
-            "http://localhost:3000/api/InsertTransaction",{montant_a_recevoir:montantreçu,montantTotal:montantenvoye,status:'envoye',paysDest:this.inforec.nom_pays,paysOrigine:this.infoem.nom_pays,DeviceDest:this.inforecdev.nom_devise,DeviceOrigine:this.infoemdev.nom_devise,frais:frais,DEVISEId:this.infoem.DEVISEId,CLIENTId:this.idEmetteur,UserId:sessionStorage.getItem('iduser'),recepteurid:+this.idRecepteur},
+            "http://localhost:3000/api/InsertTransaction",{montant_a_recevoir:montantreçu,montantTotal:montantenvoye,status:'envoye',paysDest:this.inforec.nom_pays,paysOrigine:this.infoem.nom_pays,DeviceDest:this.inforecdev.nom_devise,DeviceOrigine:this.infoemdev.nom_devise,frais:frais,DEVISEId:this.infoem.DEVISEId,CLIENTId:this.idEmetteur,UserId:sessionStorage.getItem('iduser'),recepteurid:+this.idRecepteur,idsousagence:sessionStorage.getItem('sousAgenceid')},
             this.httpOptions
             )
             .subscribe(res=>{
@@ -162,10 +162,18 @@ console.log(this.allPays[0])
               if(res.erreur=='false'){
                 Swal.fire(
                   'Transaction!',
-                  'faite avec succes <a href=/>accueil</a> ou <a href=send>nouvelleTransaction</a>!',
+                  'faite avec succes <a href=/>accueil</a> ou <a href=send>nouvelleTransaction</a>! le code de paiement est '+res.data,
                   'success',
                   
                 )
+              }
+              else{
+                Swal.fire({
+                  icon: 'error',
+                  title: 'Oops...',
+                  text: 'Message '+res.message,
+                  footer: '<a href="">Why do I have this issue?</a>'
+                })
               }
             })
         

@@ -4,6 +4,7 @@ import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
@@ -15,9 +16,13 @@ export class LoginComponent implements OnInit {
    
   constructor(private http: HttpClient,private router:Router) {}
   alldonne:Donne|any;
-  islogin:any;
+  islogin:string='false';
+
   token:any;
   ngOnInit(): void {
+    let verif='non';
+   
+    sessionStorage.clear()
   
   }
   
@@ -32,6 +37,7 @@ export class LoginComponent implements OnInit {
 
    var user = form.value.username;
    var password=form.value.password;
+  
     this.http
       .post<Donne|any>(
         "http://localhost:3000/api/login",
@@ -40,20 +46,25 @@ export class LoginComponent implements OnInit {
       )
 
       .subscribe((res) =>{
-        console.log(res)
+       
         this.alldonne=res.data
         this.islogin=res.islogin
         this.token=res.token
-        
+       
 
         if(this.islogin=='true'){
-          console.log(this.alldonne.isAdmin)
-          console.log(this.alldonne.isAdmin)
+          Swal.fire(
+            'Connexion!',
+            'Avec succés',
+            'success'
+          )
+         
+        console.log('suis la')
           sessionStorage.setItem('tokken',this.token)
           sessionStorage.setItem('isloggin',this.islogin)
           sessionStorage.setItem('isAdmin',this.alldonne.isAdmin)
           sessionStorage.setItem('iduser',this.alldonne.id)
-          
+          sessionStorage.setItem('sousAgenceid',this.alldonne.SOUSAGENCEId)
           if(sessionStorage.getItem('url')){
             let url=sessionStorage.getItem('url')
             sessionStorage.removeItem('url')
@@ -66,9 +77,17 @@ export class LoginComponent implements OnInit {
          
           
         }
+     
+       
+     
+       
        
         });
+       
+        
 
+       
+      
     // ou
     // this.result = form.controls['username'].value;
   }
