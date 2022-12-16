@@ -32,7 +32,7 @@ constructor(private router:Router,private http: HttpClient,private mesServices:A
  inforec:findonePays_Devices|any
  infoemdev:Devise|any
  inforecdev:Devise|any
-
+erreur:string|any
  httpOptions = {
   headers: new HttpHeaders({
     "Content-Type": "application/json"
@@ -59,15 +59,17 @@ console.log(this.allPays[0])
     var nomEm=form.value.nomemetteur;
     var cniEm=form.value.cniemetteur
     var phoneEm=form.value.phoneemetteur
+    console.log("suis la cniem"+cniEm);
+    
 //find or create emetteur(client)
     this.http
       .post<Idclass|any>(
         "http://localhost:3000/api/InsertClient",
-        { id: cniEm, nom_client: nomEm,prenom_client:prenomEm,phone:phoneEm },
+        { CNI: cniEm, nom_client: nomEm,prenom_client:prenomEm,phone:phoneEm },
         this.httpOptions
       )
       .subscribe(res=>{
-        this.idEmetteur=res.data
+        this.idEmetteur=res.idem
         
         
       })
@@ -83,11 +85,15 @@ console.log(this.allPays[0])
     var idPaysRecepteur=+form.value.idpaysrecepteur
     console.log('Emetteur'+idPaysemetteur)
     console.log('Recepteur'+idPaysRecepteur)
+    
+    
+    console.log("suis la"+cni);
+    
     //find or create recepteur(client)
     this.http
       .post<any>(
         "http://localhost:3000/api/InsertClient",
-        { id: cni, nom_client: nom,prenom_client:prenom,phone:phone },
+        { CNI: cni, nom_client: nom,prenom_client:prenom,phone:phone },
         this.httpOptions
       )
       .subscribe(res=>{
@@ -143,14 +149,16 @@ console.log(this.allPays[0])
         }
         if (result.isConfirmed) {
           let frais=montantenvoye*0.01
-          console.log('hello suis la'+this.idEmetteur);
+         
           
           this.http
-          .post<any>(
-            "http://localhost:3000/api/InsertTransaction",{montant_a_recevoir:montantreçu,montantTotal:montantenvoye,status:'envoye',paysDest:this.inforec.nom_pays,paysOrigine:this.infoem.nom_pays,DeviceDest:this.inforecdev.nom_devise,DeviceOrigine:this.infoemdev.nom_devise,frais:frais,DEVISEId:this.infoem.DEVISEId,CLIENTId:+this.idEmetteur,UserId:sessionStorage.getItem('iduser'),recepteurid:+this.idRecepteur},
+          .post<string|any>(
+            "http://localhost:3000/api/InsertTransaction",{montant_a_recevoir:montantreçu,montantTotal:montantenvoye,status:'envoye',paysDest:this.inforec.nom_pays,paysOrigine:this.infoem.nom_pays,DeviceDest:this.inforecdev.nom_devise,DeviceOrigine:this.infoemdev.nom_devise,frais:frais,DEVISEId:this.infoem.DEVISEId,CLIENTId:this.idEmetteur,UserId:sessionStorage.getItem('iduser'),recepteurid:+this.idRecepteur},
             this.httpOptions
             )
             .subscribe(res=>{
+              console.log(res)
+              this.erreur=res.erreur
               if(res.erreur=='false'){
                 Swal.fire(
                   'Transaction!',

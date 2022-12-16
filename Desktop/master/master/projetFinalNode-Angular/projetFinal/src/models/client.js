@@ -9,7 +9,10 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
 
       },
-      
+      CNI:{
+        type:DataTypes.INTEGER,
+      }
+      ,
       prenom_client: {
         type: DataTypes.STRING,
       },

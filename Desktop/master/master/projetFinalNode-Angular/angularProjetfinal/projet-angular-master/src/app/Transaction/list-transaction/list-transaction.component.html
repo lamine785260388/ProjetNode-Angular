@@ -11,7 +11,11 @@
             <th scope="col">Montant total</th>
             <th scope="col">Montant reçu</th>
             <th scope="col">Status</th>
+            <th scope="col">Pays d'origine</th>
+            
             <th scope="col">Devise envoyé</th>
+            <th scope="col">Pays Destination</th>
+
              <th scope="col">Devise Destination</th>
             <th scope="col">Date Envoyé</th>
 
@@ -30,9 +34,15 @@
             <td>{{donneTrans.montantTotal}}</td>
             <td>{{donneTrans.montant_a_recevoir}}</td>
             <td>{{donneTrans.status}}</td>
+            <td>{{donneTrans.paysOrigine}}</td>
+
+            
             <td>{{donneTrans.DeviceOrigine}}</td>
+            <td>{{donneTrans.paysDest}}</td>
+
+            
             <td>{{donneTrans.DeviceDest}}</td>
-            <td>{{donneTrans.createdAt}}</td>
+            <td>{{donneTrans.createdAt | date:"dd/MM/yy"}}</td>
 
 
 

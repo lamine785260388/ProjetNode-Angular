@@ -7,23 +7,25 @@
 
     <nav id="navbar" class="navbar">
       <ul>
-        <li><a class="nav-link scrollto active" href="./">Accueil</a></li>
+        <li><a class="nav-link scrollto" href="./">Accueil</a></li>
         <li><a class="nav-link scrollto  " href="/send">envoyer</a></li>
         <li><a class="nav-link scrollto" href="/recevoir">recevoir</a></li>
-        <li><a class="nav-link scrollto " href="#portfolio">transaction</a></li>
+        <li><a class="nav-link scrollto " href="/listTransaction">transaction</a></li>
        
 
         <li><a class="nav-link scrollto" href="/contact">Contact</a></li>
         <li><a class="nav-link scrollto" href="/deconnexion">Deconnexion</a></li>
-        <li><a class="nav-link scrollto" href="#"><div class="dropdown">
+        <li><a class="nav-link scrollto" href="#"><div class="dropdown" *ngIf="admin">
+        
           <button class="btn btn-primarygitt dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-            Créer utilisateur
+            Administration
           </button>
           <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
             <li><a class="dropdown-item" href="#">Action</a></li>
             <li><a class="dropdown-item" href="#">Another action</a></li>
             <li><a class="dropdown-item" href="#">Something else here</a></li>
           </ul>
+        
         </div></a></li>
       </ul>
       <i class="bi bi-list mobile-nav-toggle"></i>

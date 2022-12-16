@@ -10,7 +10,13 @@ import { Transaction } from 'src/app/class/transaction';
   styleUrls: ['./list-transaction.component.css']
 })
 export class ListTransactionComponent implements OnInit{
-  constructor(private router:Router,private http:HttpClient){}
+  constructor(private router:Router,private http:HttpClient){
+
+    if(sessionStorage.getItem('isloggin')!='true'){
+      sessionStorage.setItem('url','listTransaction')
+      this.router.navigate(['login'])
+     }
+  }
   donneTransaction:Transaction[]
   httpOptions = {
     headers: new HttpHeaders({
