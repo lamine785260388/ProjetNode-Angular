@@ -18,7 +18,7 @@ export class DeconnexionComponent implements OnInit {
   ngOnInit(): void {
     Swal.fire(
       'Deconnexion succes ',
-      'Bonne fin de journéé on espére vous revoir bientot',
+      'Bonne fin de journée, on espére vous revoir bientot',
       'success'
     )
 sessionStorage.clear()

@@ -38,9 +38,13 @@ module.exports = (app) => {
               res.json({message,erreur,data:result.id,erreur})
             }
             else{
+              Transaction.destroy({
+                where: { id: result.id }
+              })
               console.log('suis la dans le else');
               message='Votre montant est insuffisante pour faire cette Transaction votre solde est '+resultatfinal.montant
               res.json({message})
+
             }
            })
       })

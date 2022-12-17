@@ -15,10 +15,14 @@
               <h3 class="text-center mb-4">Paiement </h3>
                     <form  class="login-form" #form="ngForm" (submit)="submit(form)">
                   <div class="form-group">
-                      <input type="text" class="form-control rounded-left" placeholder="Code de Paiement" name="CodePaiement" id="CodePaiement" ngModel required>
+                      <input type="number" class="form-control rounded-left" placeholder="Code de Paiement" name="CodePaiement" id="CodePaiement" ngModel required>
                   </div>
             <div class="form-group d-flex">
-              <input type="text" class="form-control rounded-left" placeholder="numeroDepiece"  name="numeroDepiece" id="numeroDepiece" ngModel required>
+              <input type="number" class="form-control rounded-left" placeholder="numeroDepiece"  name="numeroDepiece" id="numeroDepiece" #cnirec="ngModel"ngModel required><br>
+              <div [hidden]="cnirec.valid || cnirec.pristine"
+              class="card-panel red accent-1 danger">
+              le numero de piece  doit comporter minimum 12 chiffres
+        </div>
             </div>
             <div class="form-group d-flex">
                 <input type="text" class="form-control rounded-left" placeholder="nomRecepteur"  name="nomRecepteur" id="nomRecepteur" ngModel required>
