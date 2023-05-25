@@ -8,6 +8,9 @@ import { SendComponent } from './send-receve/send/send.component';
 import { DeconnexionComponent } from './deconnexion/deconnexion.component';
 import { ReceveComponent } from './send-receve/receve/receve.component';
 import { ListTransactionComponent } from './Transaction/list-transaction/list-transaction.component';
+import { CreateuserComponent } from './administrateur/createuser/createuser.component';
+import { ListeUserComponent } from './administrateur/liste-user/liste-user.component';
+import { CreerAgenceComponent } from './creer-agence/creer-agence.component';
 
 const routes: Routes = [
   {path: '', component:AccueilComponent},
@@ -17,6 +20,10 @@ const routes: Routes = [
   {path:'deconnexion',component:DeconnexionComponent},
   {path:'recevoir',component:ReceveComponent},
   {path:'listTransaction',component:ListTransactionComponent},
+  {path:'createUser',component:CreateuserComponent},
+  {path:'createAgence',component:CreerAgenceComponent},
+
+
 
   {path:'**', component:PageNotFoundComponent}
 ];

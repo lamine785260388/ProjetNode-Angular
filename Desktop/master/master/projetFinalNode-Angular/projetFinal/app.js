@@ -37,6 +37,7 @@ require('./src/root/Ville/FindAllVille')(app)
 require('./src/root/Agence/updateAgence')(app)
 require('./src/root/Balance/updateBalance')(app)
 require('./src/root/association/Pays_Devicefindone')(app)
+require('./src/root/FindAlluser')(app)
 //test middleware:
 
 

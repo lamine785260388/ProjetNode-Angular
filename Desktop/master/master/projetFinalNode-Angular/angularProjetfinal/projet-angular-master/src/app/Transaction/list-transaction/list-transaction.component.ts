@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { Transaction } from 'src/app/class/transaction';
+import { TransactionServiceService } from '../transaction-service.service';
 
 @Component({
   selector: 'app-list-transaction',
@@ -10,7 +11,7 @@ import { Transaction } from 'src/app/class/transaction';
   styleUrls: ['./list-transaction.component.css']
 })
 export class ListTransactionComponent implements OnInit{
-  constructor(private router:Router,private http:HttpClient){
+  constructor(private router:Router,private http:HttpClient,private transactionservice:TransactionServiceService){
 
     if(sessionStorage.getItem('isloggin')!='true'){
       sessionStorage.setItem('url','listTransaction')
@@ -24,10 +25,7 @@ export class ListTransactionComponent implements OnInit{
     })
   };
   ngOnInit(): void {
-    this.http
-    .get<Transaction[]|any>(
-      "http://localhost:3000/api/findAllTransaction",
-      )
+    this.transactionservice.getTransaction()
       .subscribe(res=>{
  this.donneTransaction=res.data
 console.log(this.donneTransaction)

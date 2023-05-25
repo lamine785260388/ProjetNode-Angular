@@ -28,7 +28,7 @@ module.exports = (app) => {
         const message = `L'utilisateur a été connecté avec succès2`;
        
        const islogin='true';
-        return res.json({ message, data: user,token,islogin })
+        return res.status(200).json({ message, data: user,token,islogin })
       })
     })
      .catch(error=>{

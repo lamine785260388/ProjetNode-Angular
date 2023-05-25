@@ -42,7 +42,7 @@ const initDb = () => {
     // })
     // .then(user=>console.log(user.toJSON()))
 
-    // )
+    //)
    
     console.log('La base de donnée a bien été synchronisé  !')
   })

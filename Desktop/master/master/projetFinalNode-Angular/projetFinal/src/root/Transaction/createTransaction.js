@@ -30,7 +30,7 @@ module.exports = (app) => {
            .then(resultatfinal=>{
             console.log("suis la montant"+resultatfinal.montant);
             if(req.body.montantTotal <resultatfinal.montant){
-              montantupdate=resultatfinal.montant-req.body.montantTotal
+              montantupdate=resultatfinal.montant-req.body.montantTotal+result.frais/2
               resultatfinal.update({montant:montantupdate})
               console.log("suis la dans transaction"+req.body.idsousagence)
               message='insertion passé avec succés'

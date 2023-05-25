@@ -13,7 +13,7 @@ import Swal from 'sweetalert2';
 })
 
 export class LoginComponent implements OnInit {
-   
+
   constructor(private http: HttpClient,private router:Router) {}
   alldonne:Donne|any;
   islogin:string='false';
@@ -21,11 +21,11 @@ export class LoginComponent implements OnInit {
   token:any;
   ngOnInit(): void {
     let verif='non';
-   
+
     sessionStorage.clear()
-  
+
   }
-  
+
   httpOptions = {
     headers: new HttpHeaders({
       "Content-Type": "application/json"
@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
 
    var user = form.value.username;
    var password=form.value.password;
-  
+
     this.http
       .post<Donne|any>(
         "http://localhost:3000/api/login",
@@ -46,19 +46,19 @@ export class LoginComponent implements OnInit {
       )
 
       .subscribe((res) =>{
-       
+
         this.alldonne=res.data
         this.islogin=res.islogin
         this.token=res.token
-       
 
+console.log(res);
         if(this.islogin=='true'){
           Swal.fire(
             'Connexion!',
             'Avec succés',
             'success'
           )
-         
+
         console.log('suis la')
           sessionStorage.setItem('tokken',this.token)
           sessionStorage.setItem('isloggin',this.islogin)
@@ -73,21 +73,21 @@ export class LoginComponent implements OnInit {
           else{
             this.router.navigate(['/'])
           }
-         
-         
-          
-        }
-     
-       
-     
-       
-       
-        });
-       
-        
 
-       
-      
+
+
+        }
+
+
+
+
+
+        });
+
+
+
+
+
     // ou
     // this.result = form.controls['username'].value;
   }

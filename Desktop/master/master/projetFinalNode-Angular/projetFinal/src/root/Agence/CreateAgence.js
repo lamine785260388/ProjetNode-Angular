@@ -12,7 +12,13 @@ module.exports = (app) => {
   
 
     })
-    return res.json('insertion Agence success')
+    .then(result=>{
+      if(result!=null){
+        erreur=false
+         message="Agence Enregistrer avec Succe"
+         return res.json({erreur,message})
+        }
+    })
     
    
    

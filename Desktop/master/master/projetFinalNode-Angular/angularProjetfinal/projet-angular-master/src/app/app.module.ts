@@ -17,6 +17,9 @@ import { HttpClientModule } from "@angular/common/http";
 import { DeconnexionComponent } from './deconnexion/deconnexion.component';
 import { ResumetransactionComponent } from './send-receve/resumetransaction/resumetransaction.component';
 import { ListTransactionComponent } from './Transaction/list-transaction/list-transaction.component';
+import { CreateuserComponent } from './administrateur/createuser/createuser.component';
+import { ListeUserComponent } from './administrateur/liste-user/liste-user.component';
+import { CreerAgenceComponent } from './creer-agence/creer-agence.component';
 
 
 @NgModule({
@@ -32,8 +35,12 @@ import { ListTransactionComponent } from './Transaction/list-transaction/list-tr
     PageNotFoundComponent,
     DeconnexionComponent,
     ResumetransactionComponent,
-    ListTransactionComponent
-    
+    ListTransactionComponent,
+    CreateuserComponent,
+    ListeUserComponent,
+    CreerAgenceComponent,
+
+
   ],
   imports: [
     BrowserModule,
