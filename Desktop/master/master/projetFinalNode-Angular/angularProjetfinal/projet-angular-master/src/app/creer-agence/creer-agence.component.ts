@@ -31,7 +31,7 @@ export class CreerAgenceComponent {
     .subscribe((res) =>{
       if(res.erreur==false){
         Swal.fire(
-          'Inscription Passé!',
+          res.message,
           'Avec succés',
           'success'
         )

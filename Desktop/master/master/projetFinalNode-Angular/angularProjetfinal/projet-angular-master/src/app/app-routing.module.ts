@@ -11,6 +11,7 @@ import { ListTransactionComponent } from './Transaction/list-transaction/list-tr
 import { CreateuserComponent } from './administrateur/createuser/createuser.component';
 import { ListeUserComponent } from './administrateur/liste-user/liste-user.component';
 import { CreerAgenceComponent } from './creer-agence/creer-agence.component';
+import { CreerComponent } from './SousAgence/creer/creer.component';
 
 const routes: Routes = [
   {path: '', component:AccueilComponent},
@@ -22,6 +23,8 @@ const routes: Routes = [
   {path:'listTransaction',component:ListTransactionComponent},
   {path:'createUser',component:CreateuserComponent},
   {path:'createAgence',component:CreerAgenceComponent},
+  {path:'createSousAgence',component:CreerComponent},
+
 
 
 

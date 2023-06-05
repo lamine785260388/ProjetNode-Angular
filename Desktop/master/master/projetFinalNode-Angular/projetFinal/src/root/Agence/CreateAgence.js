@@ -15,7 +15,7 @@ module.exports = (app) => {
     .then(result=>{
       if(result!=null){
         erreur=false
-         message="Agence Enregistrer avec Succe"
+         message="Agence Enregistrer avec Succées"
          return res.json({erreur,message})
         }
     })

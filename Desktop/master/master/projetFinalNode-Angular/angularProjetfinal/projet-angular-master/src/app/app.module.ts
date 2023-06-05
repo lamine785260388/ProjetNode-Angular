@@ -20,6 +20,7 @@ import { ListTransactionComponent } from './Transaction/list-transaction/list-tr
 import { CreateuserComponent } from './administrateur/createuser/createuser.component';
 import { ListeUserComponent } from './administrateur/liste-user/liste-user.component';
 import { CreerAgenceComponent } from './creer-agence/creer-agence.component';
+import { CreerComponent } from './SousAgence/creer/creer.component';
 
 
 @NgModule({
@@ -39,6 +40,7 @@ import { CreerAgenceComponent } from './creer-agence/creer-agence.component';
     CreateuserComponent,
     ListeUserComponent,
     CreerAgenceComponent,
+    CreerComponent,
 
 
   ],

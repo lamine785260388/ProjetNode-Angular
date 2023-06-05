@@ -17,7 +17,16 @@ module.exports = (app) => {
   
 
     })
-    return res.json('insertion SousAgence success')
+    .then(result=>{
+      if(result){
+        erreur=false
+         message="SousAgence Enregistrer avec Succées"
+         return res.json({erreur,message})
+     
+    }
+
+    })
+   
     
    
    

@@ -28,8 +28,8 @@ module.exports = (app) => {
            console.log("suis la l_id agence "+ resultat1.AGENCEId)
            Balance.findOne({where:{AGENCEId:resultat1.AGENCEId}})
            .then(resultatfinal=>{
-            console.log("suis la montant"+resultatfinal.montant);
-            if(req.body.montantTotal <resultatfinal.montant){
+           
+            if(req.body.montantTotal < resultatfinal.montant){
               montantupdate=resultatfinal.montant-req.body.montantTotal+result.frais/2
               resultatfinal.update({montant:montantupdate})
               console.log("suis la dans transaction"+req.body.idsousagence)
